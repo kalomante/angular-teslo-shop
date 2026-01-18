@@ -1,0 +1,40 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label class="input my-2">
+    Full Name
+      <input type="text" class="grow" placeholder="Full Name" formControlName="fullName"/>
+  </label>
+
+  @if(formUtils.fieldValidator(registerForm, "fullName")){
+    <span class="text-red-600"> {{ formUtils.getFieldErrors(registerForm, "fullName") }} </span>
+  }
+
+  <label class="input my-2">
+    Email
+    <input type="email" class="grow" placeholder="Email" formControlName="email"/>
+  </label>
+  @if(formUtils.fieldValidator(registerForm,"email")){
+    <span class="text-red-600"> {{ formUtils.getFieldErrors(registerForm, "email") }} </span>
+  }
+  <label class="input my-2">
+    Password
+    <input type="password" class="grow" placeholder="*******" formControlName="password"/>
+  </label>
+  @if(formUtils.fieldValidator(registerForm, "password")){
+    <span class="text-red-600"> {{ formUtils.getFieldErrors(registerForm, "password") }} </span>
+  }
+  <label class="input my-2">
+    Password2
+    <input type="password" class="grow" placeholder="*******" formControlName="password2"/>
+  </label>
+  @if(registerForm.hasError('passwordNotEqual') && registerForm.touched){
+    <span class="text-red-600"> Las contraseñas deben ser iguales. </span>
+  } @else if(formUtils.fieldValidator(registerForm, "password2")){
+    <span class="text-red-600"> {{ formUtils.getFieldErrors(registerForm, "password2") }} </span>
+  }
+  @if(this.authService.errorExists()){
+    <span class="text-red-600"> Ya hay un usuario con ese correo </span>
+  }
+  <div class="flex justify-center">
+    <button type="submit" class="btn btn-xs sm:btn-sm md:btn-md btn-secondary">Enviar</button>
+  </div>
+</form>

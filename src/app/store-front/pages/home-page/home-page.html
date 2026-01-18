@@ -1,0 +1,29 @@
+<h1 class="text-3xl font-bold font-montserrat">Todos los productos {{ paginationService.pageParam() }} </h1>
+<h3 class="text-xl mb-5">Para todos los gustos</h3>
+
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
+  @for (product of productResource.value()?.products; track product.id) {
+    <product-card
+    [title]="product.title"
+    [description]="product.description"
+    [image]="product.images[1]"
+    [productId]="product.slug"/>
+  } @empty {
+    <div class="text-center w-full h-100 place-items-center">
+      <span class="loading loading-spinner text-primary"></span>
+    </div>
+  }
+  <!-- <product-card />
+  <product-card />
+  <product-card />
+  <product-card /> -->
+</div>
+<app-pagination [pages]="productResource.value()?.pages ?? 0" [currentPage]="paginationService.pageParam()"/>
+
+
+
+
+
+

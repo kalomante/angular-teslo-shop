@@ -1,0 +1,19 @@
+<div class="card bg-base-100 shadow-sm animate-fade-in">
+  <figure class="px-10 pt-10">
+    <img
+      src="{{ image() | productImage }}"
+      [alt]="title()"
+      class="rounded-xl" />
+  </figure>
+  <div class="card-body items-center text-center">
+    <h2 class="card-title font-montserrat text-accent text-lg">
+      <a [routerLink]="['/product', productId()]">
+        {{ title() }}
+      </a>
+     </h2>
+    <p> {{ description() | slice: 0:70 }}... </p>
+    <div class="card-actions">
+      <a [routerLink]="['/product', productId()]" class="text-accent">Ver producto</a>
+    </div>
+  </div>
+</div>

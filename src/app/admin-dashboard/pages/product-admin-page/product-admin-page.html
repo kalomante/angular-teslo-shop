@@ -1,0 +1,10 @@
+@if(rxProduct.isLoading()){
+  <div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+}
+
+@if(rxProduct.hasValue()){
+  <product-details [product]="rxProduct.value()" />
+}
+

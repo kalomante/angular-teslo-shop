@@ -1,0 +1,28 @@
+<h1 class="text-2xl font-bold">Listado de productos</h1>
+<h3 class="text-lg">Total de productos <span class="text-accent"> {{ rxProducts.value()?.count }} </span></h3>
+<span class="text-xl">Pages: <span class="text-accent">{{ rxProducts.value()?.pages }}</span> </span>
+
+<div class="divider"></div>
+
+<div class="flex gap-2 items-center h-20">
+  <app-pagination
+  [pages]="rxProducts.value()?.pages ?? 0"
+  [currentPage]="paginationService.pageParam()"
+  />
+
+  <select class="select select-bordered w-32" (change)="productsPerPage.set(+selectPerPage.value)" #selectPerPage>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <!--  (click)="productsPerPage.set(+select100.value)" #select100 -->
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+
+  <div class="flex flex-1"></div>
+
+  <button class="btn btn-primary" routerLink="/admin/product/new">
+    Nuevo Producto
+  </button>
+</div>
+
+<product-table [products]="rxProducts.value()?.products ?? []" />
